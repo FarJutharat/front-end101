@@ -1,0 +1,100 @@
+#title{
+    color: burlywood;
+    background-color: azure;
+}
+
+body{
+    color: blanchedalmond;
+    background-color: chocolate;
+}
+.paragraph{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 100px;
+
+}
+
+/*psudo class*/
+#content > a{ /*ถ้ามี > จะหมายถึงแค่aชั้นเดียว*/
+    text-decoration: none; 
+}
+#content + p{ /*เลือกpที่อยู่หลังcontent*/
+   color: red !important; /*แค่แถวเดียวที่มันจะเปลี่ยน*/
+}
+#content ~ p{ /*เลือกpที่อยู่หลังทั้งหมดcontent*/
+    color: black;
+ }
+ button{
+     outline: none;
+     border: none;
+     color: blueviolet;/*สีตัวหนังสือ*/
+     box-shadow: 0px 4px 6px black inset; /*บน ล่าง ฟุ้ง  inset-->เงาอยู่ด้านใน*/
+     padding:10px 20px ;/* ซ้าย ขวา ระยะห่างด้านใน*/
+    border-radius: 10px; /*ปุ่มโค้ง*/
+    cursor: pointer; /*ทำให้ใมีรูปเมาส์ตอนชี้*/
+
+ }
+ button:hover{ /*เมาส์ชี้แล้วเปลี่ยนตัวหนังสือ*/
+     background-color: chartreuse;
+
+ }
+
+ button:active{ /*actionตอนกด*/
+    transform: translateY(10px);
+    box-sizing: none;
+
+ }
+ #content2 p:first-child{
+     color: cornflowerblue;
+ }
+
+ #content2 p:last-child{
+    color: rebeccapurple;
+}
+
+#content2 p:nth-child(2){ /*ระหว่างแล้วก็เลือกตัวที่เท่าไหร้*/
+    color: yellow;
+}
+
+
+#content2 p:nth-child(even){ /*ระหว่างแล้วก็เลือกตัวที่เท่าไหร้*/
+    color: rgb(206, 0, 0);
+}
+
+#content2 p:nth-child(odd){ /*ระหว่างแล้วก็เลือกตัวที่เท่าไหร้*/
+    color: rgb(170, 0, 204);
+}
+#content2 p:nth-child(-n+3){  /*ระหว่างแล้วก็เลือกตัวที่เท่าไหร้ อันนี้สามตัวแรก*/
+    color: greenyellow;
+}
+#content2 p:not(#content2-p1):not(#content2-p3){ /*เลือกตัวที่ไม่ใช่ตัวที่กำหนด*/
+    color: azure;
+}
+
+
+/*psudo element*/
+#hw{
+    display: inline-block;
+    transform-origin: center;  /*จุดหมุน*/
+    transition: all 1s ease;  /*วางแล้วมันจะสมูทไปด้านตกวันออก*/
+    animation: hw-animation 3s ease infinite; /*เล่นไปเรื่อยๆ*/
+
+}
+#hw::before{  
+    content: "T"; /*เลือกตัว*/
+    color: violet 
+}
+#hw::after{  
+    content: "o"; /*เลือกตัว*/
+    color: blue
+}
+
+#hw:hover{
+    color: yellowgreen;
+    letter-spacing: 5px;
+}
+
+@keyframes hw-animation{
+    to{
+        transform: rotateZ(360deg); /*ตัวหนังสือขยับได้*/
+    }
+}

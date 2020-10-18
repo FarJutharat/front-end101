@@ -1,0 +1,28 @@
+#main-content{
+    display: flex; /*ให้มันติดกันบรรทัดเดียวกัน*/
+    justify-content: space-around; /*จัดการ contextข้างใน flex*/
+    height: 100vh;  /*vhขนาดของview browser*/
+    /* align-items: center; */
+    /*flex-direction: column; /*แนวตั้ง*/
+     flex-wrap: wrap; /*ขึ้นบรรทัดใหม่ ตามขนาดของdisplayตอนนั้น */
+}
+.card{
+    width: 100%;
+    height: 200px;
+    background-color: bisque;
+}
+#grid-content{
+    display:grid;
+    grid-template-columns: 1fr 2fr 1fr; /*frคือแบ่งเป็นส่วนๆเต็มหน้าจอ*/
+    gap: 10px; /*ช่องว่างระหว่างกัน*/
+}
+@media screen and (max-width:1024px){  /*ถ้าdisplayมีขนาดเท่าที่กำหนดไว้ให่ทำตามนี้*/
+
+    #Title{
+        font-size: 4em;
+        color: brown;
+    }
+    #grid-content{
+        grid-template-columns: 1fr; /*ลดเหลือ1colum*/
+    }
+}

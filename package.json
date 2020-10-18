@@ -1,0 +1,8 @@
+{
+    "name":"moogle",
+    "count" : 50,
+    "images" : [
+        "abc.png",
+        "123.png"
+    ]
+}

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farja</title>
+
+    <style>
+        button{
+            position: relative;
+            outline: none;
+            border :none;
+            border-radius: 10px;
+            padding : 10px 20px;
+            background-color: bisque;
+            color: brown;
+            box-shadow: 0 2px blue;
+            cursor : pointer;
+            text-transform: uppercase;
+
+        }
+        .ripple{
+            overflow: hidden; /* ไม่ให้ตัวอักษรหลุดไปแบบน่าเกลียด*/
+            /* opacity: 1;
+            border-radius: 100%;
+            background-color: rgb(255, 248, 220);
+            position: absolute; */
+           
+        }
+
+        .ripple-effect{
+            /* overflow: hidden; ไม่ให้ตัวอักษรหลุดไปแบบน่าเกลียด */
+            transform: scale(0);
+            opacity: 1;
+            border-radius: 100%;
+            background-color: rgb(255, 248, 220);
+            position: absolute;
+            transform-origin: center;
+            animation: ripple-animation 1s ease 1;
+           
+        }
+
+        @keyframes ripple-animation{
+            to{
+                opacity: 0;
+                transform: scale(4);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- <button onclick="clicked()" >click</button> -->
+    <!-- <button>click</button> -->
+    <div>
+    <button class="ripple">setting</button>
+    </div>
+       <div id="first-content">
+        <p>Mog one</p>
+        <p>Mog two</p>
+        </div>
+
+        <div id="second-content">
+
+        </div>
+        <div class="form-input">
+            <input type="text" id="message">
+           <!-- <input type="submit" value="todoroki"> การสร้างปุ่ม-->
+            <button onclick='addMessage()'>Submit</button> <!--การสร้างปุ่ม กดตรงนี้ให้ไปตาม fnที่เรียก-->
+        </div>
+
+    <script>
+        function createRippleEffect(e){
+            const button = e.currentTarget
+
+            if(button.querySelector('.ripple-effect')){
+                button.querySelector('.ripple-effect').remove()
+            }
+            const mouseX = e.clientX, mouseY = e.clientY
+          //  console.log(mouseX,mouseY)
+           const bound = button.getBoundingClientRect()
+          const diameter = Math.max(bound.width,bound.height)
+
+          const span = document.createElement('span')
+          span.style.width = span.style.height = `${diameter}px`
+          span.style.left = `${mouseX - bound.left - diameter /2}px`
+          span.style.right = `${mouseX - bound.right - diameter /2}px`
+          span.classList.add('ripple-effect')
+
+          button.appendChild(span)
+
+        }
+        document.querySelectorAll('.ripple').forEach(element => {
+            element.addEventListener('click',createRippleEffect)
+        })
+
+
+        // const  x = new Promise((resolve,reject) => { 
+        //     setTimeout(resolve,10000) //รอ10000 แล้วจะเสร็จ
+        // }).then(()=> console.log('10 second'))
+
+        // console.log(x)
+        // x.then(()=> console.log('10 second'))
+
+
+
+
+        // function wait(seconds){
+        //     return new Promise(resolve => setTimeout(() => resolve('5555555'), seconds*1000))
+        // }
+        // async function run(){
+        //     console.log('run1')
+        //     // await wait(10)
+        //     // console.log('run2')
+        //     wait(10).then(x => console.log(x))
+        // }
+        // run()
+
+        async function callApi() {
+            const x  = await fetch('https://www.youtube.com/watch?v=W0QwAgqGy3I&list=RDMMW0QwAgqGy3I&start_radio=1')
+            const result = await x.json()
+            console.log(result)
+        }
+        callApi()
+
+
+        // function clicked(){
+        //     alert('button click')
+        // }
+        // let count = 0
+        // document.querySelector('button').addEventListener('click',function(e){
+        //     // alert('555555555')
+        //     // console.log(e.currentTarget)
+        //     //e.currentTarget.textContent = '5555555' // เปลี่ยนคำในปุ่ม
+
+        //     e.currentTarget.textContent = count 
+        //     count++
+        // })
+
+
+
+        // console.log('Hi moogle!')
+       // alert('Hi Moogle!')  //เป็นpopเด้งขึ้นมา
+       // document.querySelector('p').textContent = "Mog" //pตัวแรก  เปลี่ยนเป็นที่่กำหนดใหม่
+        // const newParagraph = document.createElement('p') // สร้างelement
+        // newParagraph.textContent = "Mog three" // add text ใน element
+        // document.querySelector('#second-content').appendChild(newParagraph) //เลือกว่าจะเอาเข้าไปในelementตัวไหน ก็คือsecond-context
+
+
+        // function addMessage() { //ต้องการดึงmessageจากบรรทัดที่22
+
+        // const messageElement = document.querySelector('#message') //query messageมา
+        // //const messageElement = document.querySelector('#message').value
+        // const message = messageElement.value
+        // const newParagraph = document.createElement('p') // สร้างแท็กp -->ยัดข้อความที่จะขึ้นมาในแท็กp
+        // newParagraph.textContent = message // add text ใน element
+
+        // const contentElement = document.querySelector('#second-content') 
+        // contentElement.appendChild(newParagraph)
+        
+        //document.querySelector('#second-content').appendChild(newParagraph) //เลือกว่าจะเอาเข้าไปในelementตัวไหน ก็คือsecond-context
+        
+
+
+        //javascript fn
+            // const x = 5 
+            // console.log(x)
+            // x=3
+            // function Todo(){
+            //     for (let i=0;i<100;i++){
+            //         console.log(i)
+            //     }
+            // }
+            // Todo()
+            
+             //const add = function(x){
+            //return x+1
+            //}
+            // const add = x => x //ประกาศ fn แบบ arrow
+
+          // console.log(add(3))
+           
+
+        //   let x = 'HiHoojoo'
+        //   console.log(x.substr(4,1)) //(ตำแหน่ง,จำนวนตัว)
+        //   console.log(x.substr(-4)) //ปริ้นจากด้านหลัง
+        //   for(let index = 0;index<1000;index++){
+        //   console.log(('0' + index).substr(-2))
+        //   }
+
+        //   let b =5;
+        //   let c =99;
+        //   console.log(`b*c = `+(b*c))
+        // console.log(`b*c = +${b*c}`)
+
+        // let arr = ['apple','orange']
+        // console.log(arr.length)
+        // console.log(arr)
+        
+        //  let person = {
+        //      name : 'todoroki shouto',
+        //      age : 16
+    
+        //  }
+        // console.log(person.name)
+
+        //  let arrPerson = [
+        //      {name: 'Todoroki',age:16},
+        //      {name: 'mana',age:16}
+        //  ]
+
+        //  arrPerson.forEach((v,i) => {
+        //      console.log(v,i)
+        //  })
+        
+        
+        //  let arr = [1,2,3,4,5]
+
+        //  console.log(arr.map(v => v*2))
+        
+
+         
+
+        
+    </script>
+</body>
+</html>
